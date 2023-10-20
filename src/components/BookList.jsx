@@ -2,16 +2,28 @@ import { useEffect, useState } from "react"
 import styled from "styled-components";
 
 const List = styled.div`
+    .shelf{
+        background-color: burlywood;
+        height: 15px;
+        position: absolute;
+        z-index: -30;
+        top: 32rem;
+        left: 2em;
+        right: 2em;
+    }
     ul {
         display: flex;
         flex-wrap: wrap;
-        /* flex-direction: column;  */
+        justify-content: center;
+        align-items: flex-end;
         list-style: none;
         max-width: 1100px;
+        row-gap: 15px;
+        column-gap: 20px;
+        padding: 0;
     }
     li {
-        /* display: flex;
-        align-items: center; */
+        z-index: 10;
     }
     li div{
         display: flex;
@@ -21,7 +33,7 @@ const List = styled.div`
         z-index: -1;
         position: absolute;
         width: 200px;
-        height: 300px;
+        height: 30%;
     }
     img {
         max-width: 200px;
@@ -29,7 +41,6 @@ const List = styled.div`
         height: auto;
     }
     img:hover{
-        /* zoom: 1.15; */
         z-index: -20;
         position: static;
         opacity: .15;
@@ -51,15 +62,17 @@ export const BookList = () => {
         <>
             <h1>Fullstack Fiction</h1>
             <List>
-                <ul>
-                    {bookList?.map((book, index) => {
-                        return (
-                            <li key={index}>
-                                <div>{book.title}<br/>{book.author}</div><img src={book.url} alt="" />
-                            </li>
-                        )
-                    })}
-                </ul>
+                    <div className="shelf"></div>
+                    <ul>
+                        {bookList?.map((book, index) => {
+                            return (
+                                <li key={index}>
+                                    <div>{book.title}<br />{book.author}</div><img src={book.url} alt="" />
+                                </li>
+                            )
+                        })}
+                    </ul>
+                
             </List>
         </>
     )
